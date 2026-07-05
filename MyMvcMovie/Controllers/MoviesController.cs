@@ -19,14 +19,27 @@ namespace MyMvcMovie.Controllers
             _context = context;
         }
 
-        // GET: Movies
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Movie.ToListAsync());
-        }
+		// GET: Movies
+		public async Task<IActionResult> Index(string id)
+		{
+			if (_context.Movie == null)
+			{
+				return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+			}
 
-        // GET: Movies/Details/5
-        public async Task<IActionResult> Details(int? id)
+			var movies = from m in _context.Movie
+						 select m;
+
+			if (!String.IsNullOrEmpty(id))
+			{
+				movies = movies.Where(s => s.Title!.ToUpper().Contains(id.ToUpper()));
+			}
+
+			return View(await movies.ToListAsync());
+		}
+
+		// GET: Movies/Details/5
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
