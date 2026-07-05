@@ -20,22 +20,37 @@ namespace MyMvcMovie.Controllers
         }
 
 		// GET: Movies
-		public async Task<IActionResult> Index(string searchString)
+		public async Task<IActionResult> Index(string sortOrder, string searchString)
 		{
-			if (_context.Movie == null)
-			{
-				return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
-			}
+			// Сохраняем текущий поиск в ViewData, чтобы он не пропадал после сортировки
+			ViewData["CurrentFilter"] = searchString;
+
+			// Параметры для переключения сортировки
+			ViewData["TitleSort"] = string.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+			ViewData["DateSort"] = sortOrder == "Date" ? "date_desc" : "Date";
+			ViewData["GenreSort"] = sortOrder == "Genre" ? "genre_desc" : "Genre";
 
 			var movies = from m in _context.Movie
 						 select m;
 
-			if (!String.IsNullOrEmpty(searchString))
+			// Применяем фильтрацию (поиск)
+			if (!string.IsNullOrEmpty(searchString))
 			{
 				movies = movies.Where(s => s.Title!.ToUpper().Contains(searchString.ToUpper()));
 			}
 
-			return View(await movies.ToListAsync());
+			// Применяем сортировку
+			switch (sortOrder)
+			{
+				case "title_desc": movies = movies.OrderByDescending(m => m.Title); break;
+				case "Date": movies = movies.OrderBy(m => m.ReleaseDate); break;
+				case "date_desc": movies = movies.OrderByDescending(m => m.ReleaseDate); break;
+				case "Genre": movies = movies.OrderBy(m => m.Genre); break;
+				case "genre_desc": movies = movies.OrderByDescending(m => m.Genre); break;
+				default: movies = movies.OrderBy(m => m.Title); break;
+			}
+
+			return View(await movies.AsNoTracking().ToListAsync());
 		}
 
 		// GET: Movies/Details/5
