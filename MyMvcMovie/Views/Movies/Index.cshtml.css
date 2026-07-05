@@ -1,4 +1,9 @@
 ﻿/*styles for the same column width during pagination and filtration*/
+
+﻿﻿.header {
+	display: flex;
+	justify-content: space-between;
+}
 .table-responsive-fixed-width {
 	width: 100%;
 	overflow-x: auto;
