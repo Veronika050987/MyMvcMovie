@@ -20,3 +20,48 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+div .create-new-link {
+    color: purple;
+}
+
+    div .create-new-link:hover {
+        color: darkorchid;
+    }
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #4B0082;
+}
+
+h4 {
+    color: #7B68EE;
+}
+
+div {
+    color: #4682B4;
+}
+
+.form-group-margin-top {
+    margin-top: 20px;
+}
+/*for buttons colors*/
+.custom-purple-button.btn-primary {
+    background-color: #8A2BE2;
+    border-color: #4B0082;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08);
+    color: white;
+}
+
+    .custom-purple-button.btn-primary:hover {
+        background-color: #BA55D3;
+        border-color: darkorchid;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
+    }
+
+.custom-purple-button.disabled {
+    background-color: #D3D3D3;
+    border-color: #D3D3D3;
+    color: #6c757d;
+}
