@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyMvcMovie.Data;
 using MyMvcMovie.Models;
+using PagedList;
 
 namespace MyMvcMovie.Controllers
 {
