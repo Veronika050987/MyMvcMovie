@@ -1,8 +1,8 @@
 @import url( 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;0,800;1,300&display=swap');
 
-/*html {
-  font-size: 14px;
-}*/
+html {
+  font-size: 16px;
+}
 
 @media (min-width: 600px) {
     .actions-cell .btn {
@@ -11,18 +11,18 @@
     }
 }
 
-/*.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}*/
+}
 
-/*html {
+html {
   position: relative;
   min-height: 100%;
-}*/
+}
 
 body {
   font-family: Poppins;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 .table-responsive-fixed-width {
    /* width: 75%;*/
@@ -45,26 +45,18 @@ body {
 
             .table-responsive-fixed-width .table th:nth-child(1),
             .table-responsive-fixed-width .table td:nth-child(1) {
-                width: 40%; /* Было 50 */
+                width: 40%;
             }
 
             .table-responsive-fixed-width .table th:nth-child(2),
             .table-responsive-fixed-width .table td:nth-child(2) {
-                width: 25%; /* Оставляем 30 */
+                width: 25%;
             }
 
-/*        .table-responsive-fixed-width .table a {
-            display: inline-block;
-            width: 75%;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-        }*/
-        /* Переопределяем правила для кнопок внутри таблицы */
         .table-responsive-fixed-width .table .actions-cell a {
-            width: auto !important; /* Убираем 75% */
+            width: auto !important; 
             display: inline-block !important; /* Чтобы они встали в ряд */
-            padding: 0.2rem 0.4rem !important; /* Уменьшаем внутренние отступы */
+            padding: 0.2rem 0.4rem !important; 
             font-size: 0.8rem !important; /* Уменьшаем шрифт, если нужно */
             white-space: nowrap !important;
         }
@@ -145,19 +137,38 @@ div {
     color: #6c757d;
 }
 .custom-green-button.btn-primary {
-    background-color: #28a745;
-    border-color: #1e7e34;
+    background-color: #28a745 !important;
+    border-color: #1e7e34 !important;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08);
     color: white;
 }
 
     .custom-green-button.btn-primary:hover {
-        background-color: #218838;
+        background-color: #3CB371 !important;
         border-color: #155724;
         box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
     }
 
 .custom-green-button.disabled {
+    background-color: #c8e6c9;
+    border-color: #c8e6c9;
+    color: #191970;
+}
+
+.custom-blue-button.btn-primary {
+    background-color: #4682B4 !important;
+    border-color: #1e7e34 !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08);
+    color: white;
+}
+
+    .custom-blue-button.btn-primary:hover {
+        background-color: #20B2AA !important;
+        border-color: #155724;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
+    }
+
+.custom-blue-button.disabled {
     background-color: #c8e6c9;
     border-color: #c8e6c9;
     color: #8f9e90;
