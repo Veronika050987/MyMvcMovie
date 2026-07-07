@@ -1,29 +1,80 @@
 @import url( 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;0,800;1,300&display=swap');
 
-html {
+/*html {
   font-size: 14px;
+}*/
+
+@media (min-width: 600px) {
+    .actions-cell .btn {
+        padding: 2px 4px !important;
+        font-size: 10px !important;
+    }
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+/*.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
+}*/
 
-html {
+/*html {
   position: relative;
   min-height: 100%;
-}
+}*/
 
 body {
   font-family: Poppins;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
+}
+.table-responsive-fixed-width {
+   /* width: 75%;*/
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
+    .table-responsive-fixed-width .table {
+        /*width: 75%;*/
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+        .table-responsive-fixed-width .table th,
+        .table-responsive-fixed-width .table td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+            .table-responsive-fixed-width .table th:nth-child(1),
+            .table-responsive-fixed-width .table td:nth-child(1) {
+                width: 40%; /* Было 50 */
+            }
+
+            .table-responsive-fixed-width .table th:nth-child(2),
+            .table-responsive-fixed-width .table td:nth-child(2) {
+                width: 25%; /* Оставляем 30 */
+            }
+
+/*        .table-responsive-fixed-width .table a {
+            display: inline-block;
+            width: 75%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }*/
+        /* Переопределяем правила для кнопок внутри таблицы */
+        .table-responsive-fixed-width .table .actions-cell a {
+            width: auto !important; /* Убираем 75% */
+            display: inline-block !important; /* Чтобы они встали в ряд */
+            padding: 0.2rem 0.4rem !important; /* Уменьшаем внутренние отступы */
+            font-size: 0.8rem !important; /* Уменьшаем шрифт, если нужно */
+            white-space: nowrap !important;
+        }
+
+        /* Ячейка с кнопками не должна обрезаться */
+        .table-responsive-fixed-width .table td.actions-cell {
+            white-space: nowrap !important;
+            overflow: visible !important; /* Разрешаем кнопкам выходить за границы, если не влезают */
+            width: auto !important; /* Позволяем ячейке занять столько места, сколько нужно */
+        }
 div .create-new-link {
     color: purple;
 }
@@ -38,20 +89,42 @@ h1 {
     color: #4B0082;
 }
 
-h4 {
+h2 {
     color: #7B68EE;
+}
+
+th {
+    color: #4169E1;
 }
 
 div {
     color: #4682B4;
 }
-.edit
-{
-    width: 70px;
-}
+
 .form-group-margin-top {
     margin-top: 20px;
 }
+
+/*Edit, details, delete*/
+.actions-cell {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.action-link {
+    display: inline-block;
+    flex: 1 1 auto;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Если нужно, чтобы кнопки были примерно одинаковой ширины */
+.action-link {
+    flex: 1; /* Каждый элемент займет равную долю */
+    text-align: center;
+}
+
 /*for buttons colors*/
 .custom-purple-button.btn-primary {
     background-color: #8A2BE2;
@@ -70,4 +143,22 @@ div {
     background-color: #D3D3D3;
     border-color: #D3D3D3;
     color: #6c757d;
+}
+.custom-green-button.btn-primary {
+    background-color: #28a745;
+    border-color: #1e7e34;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08);
+    color: white;
+}
+
+    .custom-green-button.btn-primary:hover {
+        background-color: #218838;
+        border-color: #155724;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12);
+    }
+
+.custom-green-button.disabled {
+    background-color: #c8e6c9;
+    border-color: #c8e6c9;
+    color: #8f9e90;
 }

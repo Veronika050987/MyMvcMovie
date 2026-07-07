@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MyMvcMovie.Data;
 using MyMvcMovie.Models;
-using PagedList;
 
 namespace MyMvcMovie.Controllers
 {
@@ -21,15 +20,22 @@ namespace MyMvcMovie.Controllers
         }
 
 		// GET: Movies
-		public async Task<IActionResult> Index(string sortOrder, string searchString)
+		public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? pageNumber)
 		{
 			// Сохраняем текущий поиск в ViewData, чтобы он не пропадал после сортировки
-			ViewData["CurrentFilter"] = searchString;
+			//ViewData["CurrentFilter"] = searchString;
 
 			// Параметры для переключения сортировки
+			ViewData["CurrentSort"] = sortOrder;
 			ViewData["TitleSort"] = string.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
 			ViewData["DateSort"] = sortOrder == "Date" ? "date_desc" : "Date";
 			ViewData["GenreSort"] = sortOrder == "Genre" ? "genre_desc" : "Genre";
+
+			if (searchString != null)
+				pageNumber = 1;
+			else searchString = currentFilter;
+
+			ViewData["CurrentFilter"] = searchString;
 
 			var movies = from m in _context.Movie
 						 select m;
@@ -50,8 +56,8 @@ namespace MyMvcMovie.Controllers
 				case "genre_desc": movies = movies.OrderByDescending(m => m.Genre); break;
 				default: movies = movies.OrderBy(m => m.Title); break;
 			}
-
-			return View(await movies.AsNoTracking().ToListAsync());
+			int pageSize = 5;
+			return View(await PaginatedList<Movie>.CreateAsync(movies.AsNoTracking(), pageNumber ?? 1, pageSize));
 		}
 
 		// GET: Movies/Details/5

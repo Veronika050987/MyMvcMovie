@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MyMvcMovie.Models.Movie>
+﻿@* @model IEnumerable<MyMvcMovie.Models.Movie> *@
+@model PaginatedList<Movie>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,108 +8,136 @@
 <h1>Index</h1>
 
 <div class="header">
-    <div style="display:flex;">
+   @*  <div style="display:flex;">
         <div style="margin: 0px 20px;">
             <a asp-action="Create" class="btn btn-primary custom-purple-button">Create new movie</a>
         </div>
-    </div>
+    </div> *@
 
     @* <p>
     <a asp-action="Create">Create New</a>
     </p> *@
-    <form asp-controller="Movies" asp-action="Index" method="get">
-        <div class="form-actions no-color">
-            <p>
-                Find by name🔎:
-                <input type="text" name="SearchString" />
-                <input type="submit" value="Find" />
-                @*         <a asp-action="Index">Back to List</a> *@
-                <a asp-action="Index" class="btn btn-primary custom-purple-button">Back to List</a>
-            </p>
-        </div>
-    </form>
+    <div style="display:flex; width: 100%;">
+        <form asp-controller="Movies" asp-action="Index" method="get" style="width: 100%;">
+            <div class="form-actions" style="display: flex; align-items: center; justify-content: space-between; gap: 15px; width: 100%;">
+                <a asp-action="Create" class="btn btn-primary custom-purple-button">Create new movie</a>
+                <div style="display: flex; align-items: center; gap: 10px; flex-grow: 1; justify-content: center;">
+                    <label style="margin: 0; white-space: nowrap;">
+                        Find by name🔎:
+                        <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                        <button type="submit" class="btn custom-green-button">Search</button>
+                    </label>
+                </div>
+                    <a asp-action="Index" class="btn btn-primary custom-purple-button">Back to the whole list</a>
+            </div>
+        </form>
+    </div>
 </div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <a asp-action="Index"
-                   asp-route-sortOrder="@ViewData["TitleSort"]"
-                   asp-route-searchString="@ViewData["CurrentFilter"]">
-                    @Html.DisplayNameFor(model => model.Title)
-                </a>
-            </th>
-            <th>
-                <a asp-action="Index"
-                   asp-route-sortOrder="@ViewData["DateSort"]"
-                   asp-route-searchString="@ViewData["CurrentFilter"]">
-                    @Html.DisplayNameFor(model => model.ReleaseDate)
-                </a>
-            </th>
-            <th>
-                <a asp-action="Index"
-                   asp-route-sortOrder="@ViewData["GenreSort"]"
-                   asp-route-searchString="@ViewData["CurrentFilter"]">
-                    @Html.DisplayNameFor(model => model.Genre)
-                </a>
-            </th>
-     @*        <th>
+<div class="table-responsive-fixed-width">
+    <table class="table create-new-link">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["TitleSort"]"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                        @Html.DisplayNameFor(model => model.First().Title)
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["DateSort"]"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                        @Html.DisplayNameFor(model => model.First().ReleaseDate)
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["GenreSort"]"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                        @Html.DisplayNameFor(model => model.First().Genre)
+                    </a>
+                </th>
+                @*        <th>
                 @Html.DisplayNameFor(model => model.URL)
-            </th>
-            <th>
+                </th>
+                <th>
                 @Html.DisplayNameFor(model => model.Brief)
-            </th>
-            <th>
+                </th>
+                <th>
                 @Html.DisplayNameFor(model => model.Poster)
-            </th> *@
-          @*   <th>
+                </th> *@
+                @*   <th>
                 @Html.DisplayNameFor(model => model.photo)
-            </th> *@
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-       @*      <th>
+                </th> *@
+             @*    <th>
+                    @Html.DisplayNameFor(model => model.First().Price)
+                </th> *@
+                @*      <th>
                 @Html.DisplayNameFor(model => model.Rating)
-            </th> *@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReleaseDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-           @*  <td>
+                </th> *@
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                @*  <td>
                 @Html.DisplayFor(modelItem => item.URL)
-            </td>
-            <td>
+                </td>
+                <td>
                 @Html.DisplayFor(modelItem => item.Brief)
-            </td>
-            <td>
+                </td>
+                <td>
                 @Html.DisplayFor(modelItem => item.Poster)
-            </td> *@
-         @*    <th>
-               @Html.DisplayNameFor(model => model.photo)
-            </th> *@
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-@*             <th>
+                </td> *@
+                @*    <th>
+                @Html.DisplayNameFor(model => model.photo)
+                </th> *@
+              @*   <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td> *@
+                @*             <th>
                 @Html.DisplayNameFor(model => model.Rating)
-            </th> *@
-            <td>
-                    <a asp-action="Edit" class="btn btn-primary edit custom-purple-button" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" class="btn btn-primary custom-purple-button" asp-route-id="@item.Id">Details</a>
-                    @*             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
-            </td>
-        </tr>
+                </th> *@
+                    <td class="actions-cell" style="white-space: nowrap;">
+                    <a asp-action="Edit" class="btn btn-primary edit custom-purple-button" asp-route-id="@item.Id">Edit</a> 
+                    <a asp-action="Details" class="btn btn-primary custom-purple-button" asp-route-id="@item.Id">Details</a> 
+@*                     <a asp-action="Delete" class="btn btn-primary edit custom-purple-button" asp-route-id="@item.Id">Delete</a> *@
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@{
+    string prevDisabled = Model.HasPrevPage ? "" : "disabled";
+    string nextDisabled = Model.HasNextPage ? "" : "disabled";
 }
-    </tbody>
-</table>
+
+<div style="display:flex;justify-content:space-between;">
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        Prev
+    </a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>
+</div>
