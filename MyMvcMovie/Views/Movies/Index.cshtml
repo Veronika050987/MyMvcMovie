@@ -8,11 +8,11 @@
 <h1>Movies</h1>
 
 <div class="header">
-    <div style="display:flex; width: 100%; margin: 20px;">
+    <div style="display:flex; width: 97%; margin: 20px;">
         <form asp-controller="Movies" asp-action="Index" method="get" style="width: 100%;">
-            <div class="form-actions" style="display: flex; align-items: center; justify-content: space-between; gap: 15px; width: 100%;">
+            <div class="form-actions" style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%;">
                 <a asp-action="Create" class="btn btn-primary custom-purple-button">Create new movie</a>
-                <div style="display: flex; align-items: center; gap: 10px; flex-grow: 1; justify-content: center;">
+                <div style="display: flex; align-items: center; gap: 8px; flex-grow: 1; justify-content: center;">
                     <label style="margin: 0; white-space: nowrap;">
                         Find by name🔎:
                         <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
