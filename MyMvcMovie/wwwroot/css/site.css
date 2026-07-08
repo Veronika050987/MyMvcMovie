@@ -21,9 +21,10 @@ html {
 }
 
 body {
-  font-family: Poppins;
-  margin-bottom: 40px;
-  background-color: aliceblue;
+    font-family: Poppins;
+    margin-bottom: 40px;
+    /*background-color: aliceblue;*/
+    background-image: linear-gradient(to bottom right, #B0C4DE, #98FB98);
 }
 .table-responsive-fixed-width {
    /* width: 75%;*/
