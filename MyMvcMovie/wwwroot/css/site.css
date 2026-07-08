@@ -23,6 +23,7 @@ html {
 body {
   font-family: Poppins;
   margin-bottom: 40px;
+  background-color: aliceblue;
 }
 .table-responsive-fixed-width {
    /* width: 75%;*/
