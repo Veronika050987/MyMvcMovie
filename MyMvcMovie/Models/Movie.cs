@@ -30,6 +30,7 @@ namespace MyMvcMovie.Models
 		[Range(1, 100)]
 		[DataType(DataType.Currency)]
 		[Column(TypeName = "decimal(18, 2)")]
+		[DisplayFormat(DataFormatString = "{0:G29}", ApplyFormatInEditMode = true)]
 		public decimal Price { get; set; }
 		[Range(1, 100)]
 		public string? Rating { get; set; }
